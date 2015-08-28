@@ -1,4 +1,5 @@
-# Encrypt an input file using build in node crypto. Make sure you use same key when decrypted the file
+# Encrypt an input file using build in node crypto.
+**Note:** Make sure you use same key when decrypt the file
 
 # Sample command:
 + To encrypt:
