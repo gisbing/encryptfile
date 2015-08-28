@@ -1,7 +1,7 @@
 {
   "name": "encryptfile",
   "description": "Encrypt a file",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2"
