@@ -2,10 +2,10 @@
 
 # Sample command:
 + To encrypt:
-    + ```sh
+    ```sh
     $ node app.js 'e' 'abc' 'cleartext.json' 'encrypted.txt'
 + To decrypt:
-    + ```sh
+    ```sh
     $ node app.js 'd' 'abc' 'encrypted.txt' 'new.json'
 
 # Parameters:
