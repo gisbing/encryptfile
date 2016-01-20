@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var encryptor = require("./app/index.js");
 
 //encryptor.decrypt('encrypted.txt', 'test.txt', 'abc', {algorithm: 'aes192'});
@@ -9,18 +11,23 @@ var key = process.argv[3];
 var options = process.argv[6] || {algorithm: 'aes192'};
 
 
-if (operation === 'e'){
+if (operation === 'encrypt'){
     var clearData = process.argv[4];        //input file contains clear data
     var encryptedData = process.argv[5] || 'encrypted.txt';
     encryptor.encrypt(clearData, encryptedData,  key, options);
-}else if (operation === 'd') {
+}else if (operation === 'decrypt') {
     var encryptedData = process.argv[4];    //input encrypted file
     var decryptedData = process.argv[5]; //output decrypted file
 
-    encryptor.decrypt(encryptedData, decryptedData, key,  options);
-
+    encryptor.decrypt(encryptedData, decryptedData, key, options);
 }else{
-    console.log('Please specify an operation: \'e\' for encrypt, \'d\' for decrypt');
+    console.log('Please specify an operation:'); 
+	console.log("      'encrypt' to encrypt, 'decrypt' for decrypt");
+	console.log("Examples: ");
+	console.log("  node-crypto 'encrypt' <key> <ClearDataFile> <outputEncrypted>");
+	console.log("  node-crypto 'decrypt' <key> <EncryptedFile> <outputClear>");
+
+	process.exit(1);
 }
 
 
