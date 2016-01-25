@@ -23,9 +23,20 @@ That will setup a new command, "node-crypto". Type that at the command prompt an
    $ node-crypto decrypt 'abc' 'encrypted.txt' 'clear.json'
 ```
 
+# Sample commands with a key file:
++ To encrypt:
+```sh 
+   $ node-crypto encrypt keyfile.key 'cleartext.json' 'encrypted.txt'
+```
+
++ To decrypt:
+```sh 
+   $ node-crypto decrypt keyfile.key 'encrypted.txt' 'clear.json'
+```
+
 # Parameters:
 + "operation"     'encrypt' for encrypt, 'decrypt' for decrypt
-+ "key"
++ "key"			  Can be a file name or the actual key
 + "input file"    Optional. For encryption, it is the file to be encrypted. For decryption, it is the encrypted file.
 + "output file"   Optional. For encryption, it is the encrypted file. For decryption, it is the file to be decrypted.
 + "options"       default: {algorithm: 'aes192'}
