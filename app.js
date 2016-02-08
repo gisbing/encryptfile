@@ -7,18 +7,28 @@ var fs = require("fs");
 
 
 var operation = process.argv[2];
+if(!operation) {
+    printHelp();
+}
 
 var key = process.argv[3];
 if(fs.existsSync(key)) {
     key = fs.readFileSync(key).toString(); 
     console.log("Key File Exists, using contents for key:", key);
 } else {
-    console.log("Key File DOES NOT Exist, using this key:", key);
+    if(key) {
+        console.log("Key File DOES NOT Exist, using this key:", key);
+    } else {
+        console.log("Key File DOES NOT Exist and key is missing.");
+        printHelp();
+        process.exit(1);    
+    }
 }
 
 var file1 = process.argv[4]; //input file
 if(!fs.existsSync(file1)) {
     console.log("Input file does not exist:", file1);
+    printHelp();
     process.exit(1);
 }
 
@@ -33,19 +43,19 @@ if (operation === 'encrypt'){
 }else if (operation === 'decrypt') {
     var encryptedData = process.argv[4];    //input encrypted file
     var decryptedData = process.argv[5]; //output decrypted file
-
     encryptor.decrypt(encryptedData, decryptedData, key, options);
 } else {
-    console.log('Please specify an operation:'); 
-	console.log("      'encrypt' to encrypt, 'decrypt' for decrypt");
-	console.log("Examples: ");
-	console.log("  node-crypto 'encrypt' <key Or KeyFileName> <ClearDataFile> <outputEncrypted>");
-	console.log("  node-crypto 'decrypt' <key Or KeyFileName> <EncryptedFile> <outputClear>");
-
-	process.exit(1);
+    printHelp();
 }
 
-
+function printHelp(){
+    console.log('Please specify an operation:'); 
+    console.log("      'encrypt' to encrypt, 'decrypt' for decrypt");
+    console.log("Examples: ");
+    console.log("  node-crypto encrypt <key Or KeyFileName> <ClearDataFile> <outputEncrypted>");
+    console.log("  node-crypto decrypt <key Or KeyFileName> <EncryptedFile> <outputClear>");
+    process.exit(1);
+}
 
 /*
 var plainText = '1234567812345678';
